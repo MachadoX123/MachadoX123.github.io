@@ -3,6 +3,7 @@ name: Deploy static site to GitHub Pages
 on:
   push:
     branches: [ "main" ]  # or "master" if that is your default branch
+  workflow_dispatch:
 
 jobs:
   build:
