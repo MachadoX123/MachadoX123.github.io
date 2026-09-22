@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Machado's personal website.">
+  <title>Machado | Personal Website</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top">M.</a>
+    <nav aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#interests">Interests</a>
+      <a class="nav-button" href="mailto:machadox123@users.noreply.github.com">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">Hello, I am</p>
+      <h1 id="hero-title">Machado<span>.</span></h1>
+      <p class="hero-text">A student exploring software engineering, automation, and the web one project at a time.</p>
+      <a class="primary-button" href="#about">Explore the page <span aria-hidden="true">&darr;</span></a>
+    </section>
+
+    <section class="content-grid" id="about" aria-labelledby="about-title">
+      <div>
+        <p class="section-label">01 / About</p>
+        <h2 id="about-title">Learning by building.</h2>
+      </div>
+      <div class="section-copy">
+        <p>I enjoy turning ideas into useful digital experiences and learning how the pieces fit together, from version control to deployment.</p>
+        <p>This page is a small experiment built with plain HTML, CSS, and JavaScript.</p>
+      </div>
+    </section>
+
+    <section class="content-grid interests" id="interests" aria-labelledby="interests-title">
+      <div>
+        <p class="section-label">02 / Interests</p>
+        <h2 id="interests-title">Currently curious about.</h2>
+      </div>
+      <ul class="interest-list">
+        <li><span>01</span> Web development</li>
+        <li><span>02</span> Software automation</li>
+        <li><span>03</span> Creative problem solving</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Machado</p>
+    <p>Built with curiosity.</p>
+  </footer>
+</body>
+</html>
