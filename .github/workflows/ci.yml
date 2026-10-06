@@ -1,0 +1,32 @@
+name: Continuous Validation
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate HTML
+        run: npx --yes html-validate@10 index.html
+
+      - name: Check JavaScript syntax
+        run: node --check script.js
+
+      - name: Run unit tests
+        run: node --test

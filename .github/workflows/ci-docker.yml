@@ -1,0 +1,47 @@
+name: CI with Docker
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build --tag personal-site:${GITHUB_SHA} .
+
+      - name: Run container and verify the site
+        shell: bash
+        run: |
+          docker run --detach --rm --name personal-site \
+            --publish 127.0.0.1:8080:80 \
+            "personal-site:${GITHUB_SHA}"
+
+          served=0
+          for attempt in {1..10}; do
+            if curl --fail --silent http://127.0.0.1:8080/ --output site-response.html; then
+              served=1
+              break
+            fi
+            sleep 1
+          done
+
+          test "$served" -eq 1
+          grep --fixed-strings --quiet '<title>Machado | Personal Website</title>' site-response.html
+
+      - name: Stop container
+        if: always()
+        run: |
+          if docker container inspect personal-site > /dev/null 2>&1; then
+            docker stop personal-site
+          fi

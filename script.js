@@ -1,3 +1,15 @@
+/**
+ * Writes the current copyright year into the footer.
+ * @param {{textContent: string}} element
+ * @param {number} year
+ * @returns {void}
+ */
+function updateCopyrightYear(element, year) {
+  element.textContent = String(year);
+}
+
 const yearElement = document.querySelector('#year');
 
-yearElement.textContent = new Date().getFullYear();
+if (yearElement) {
+  updateCopyrightYear(yearElement, new Date().getFullYear());
+}
